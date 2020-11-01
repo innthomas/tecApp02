@@ -58,6 +58,7 @@ class AccountDashboard extends StatelessWidget {
           person.acctNumber,
         ],
         builder: (person) => ListTile(
+          leading: Icon(Icons.person),
           title: Text(person.name),
           subtitle: Text(person.acctNumber),
           trailing: Text('${person.balance} '),
