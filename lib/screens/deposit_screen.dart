@@ -37,7 +37,7 @@ class _EditAccountState extends State<EditAccount> {
     } else {
       //Controller Update
       nameController.text = widget.account.name;
-      balanceController.text = widget.account.balance.toString();
+      balanceController.text = "";
       //State Update
       new Future.delayed(Duration.zero, () {
         final productProvider =
@@ -80,6 +80,8 @@ class _EditAccountState extends State<EditAccount> {
               height: 20.0,
             ),
             RaisedButton(
+              color: Colors.green[900],
+              textColor: Colors.white,
               child: Text('Save'),
               onPressed: () {
                 productProvider.saveAccount();
@@ -88,11 +90,10 @@ class _EditAccountState extends State<EditAccount> {
             ),
             (widget.account != null)
                 ? RaisedButton(
-                    color: Colors.red,
-                    textColor: Colors.white,
-                    child: Text('Delete'),
+                    color: Colors.white,
+                    textColor: Colors.black,
+                    child: Text('cancel'),
                     onPressed: () {
-                      productProvider.removeAccount(widget.account.accountId);
                       Navigator.of(context).pop();
                     },
                   )

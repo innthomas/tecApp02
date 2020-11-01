@@ -3,16 +3,16 @@ import 'package:provider/provider.dart';
 import 'package:tecApp02/models/account.dart';
 import '../providers/account_provider.dart';
 
-class EditAccount extends StatefulWidget {
+class WdrawAccount extends StatefulWidget {
   final Account account;
 
-  EditAccount([this.account]);
+  WdrawAccount([this.account]);
 
   @override
-  _EditAccountState createState() => _EditAccountState();
+  _WdrawAccountState createState() => _WdrawAccountState();
 }
 
-class _EditAccountState extends State<EditAccount> {
+class _WdrawAccountState extends State<WdrawAccount> {
   final nameController = TextEditingController();
   final balanceController = TextEditingController();
 
@@ -37,7 +37,7 @@ class _EditAccountState extends State<EditAccount> {
     } else {
       //Controller Update
       nameController.text = widget.account.name;
-      balanceController.text = widget.account.balance.toString();
+      balanceController.text = "";
       //State Update
       new Future.delayed(Duration.zero, () {
         final productProvider =
@@ -56,9 +56,10 @@ class _EditAccountState extends State<EditAccount> {
     return Scaffold(
       backgroundColor: Colors.teal[100],
       appBar: AppBar(
+          backgroundColor: Colors.red[500],
           title: Center(
               child: (widget.account != null)
-                  ? Text("add transaction")
+                  ? Text("Withdrawal transaction")
                   : Text('Add Account'))),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -73,14 +74,19 @@ class _EditAccountState extends State<EditAccount> {
             ),
             TextField(
               controller: balanceController,
-              decoration: InputDecoration(hintText: 'Deposit'),
-              onChanged: (value) => productProvider.depositToBalance(value),
+              decoration: InputDecoration(
+                hintText: 'amount ',
+                labelText: 'withdraw',
+              ),
+              onChanged: (value) => productProvider.withdrawFromBalance(value),
             ),
             SizedBox(
               height: 20.0,
             ),
             RaisedButton(
-              child: Text('Save'),
+              color: Colors.red[500],
+              textColor: Colors.white,
+              child: Text('withdraw'),
               onPressed: () {
                 productProvider.saveAccount();
                 Navigator.of(context).pop();
@@ -88,11 +94,11 @@ class _EditAccountState extends State<EditAccount> {
             ),
             (widget.account != null)
                 ? RaisedButton(
-                    color: Colors.red,
-                    textColor: Colors.white,
-                    child: Text('Delete'),
+                    color: Colors.white,
+                    textColor: Colors.black,
+                    child: Text('cancel'),
                     onPressed: () {
-                      productProvider.removeAccount(widget.account.accountId);
+                      // productProvider.removeAccount(widget.account.accountId);
                       Navigator.of(context).pop();
                     },
                   )

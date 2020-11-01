@@ -22,8 +22,13 @@ class AccountProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  changeBalance(String value) {
+  depositToBalance(String value) {
     _balance += double.parse(value);
+    notifyListeners();
+  }
+
+  withdrawFromBalance(String value) {
+    _balance -= double.parse(value);
     notifyListeners();
   }
 
