@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tecApp02/models/account.dart';
 
-import 'transact_dialog.dart';
+import 'edit_account.dart';
 
 //import 'edit_account.dart';
 
@@ -19,15 +19,15 @@ class MyListViewBuilder extends StatelessWidget {
         itemCount: accounts.length,
         itemBuilder: (context, index) {
           return ListTile(
+            leading: Icon(Icons.person),
             title: Text(accounts[index].name),
             subtitle: Text(accounts[index].acctNumber.toString()),
             trailing: Text(accounts[index].balance.toString()),
-            onTap: () => buildTransactDialog(context),
-            //onTap: () {
-
-            //Navigator.of(context).push(MaterialPageRoute(
-            //    builder: (context) => EditAccount(accounts[index])));
-            // },
+            //onTap: () => buildTransactDialog(context),
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => EditAccount(accounts[index])));
+            },
           );
         });
   }

@@ -38,6 +38,12 @@ Future buildShowAddAccountDialog(BuildContext context) {
             ),
             actions: <Widget>[
               FlatButton(
+                child: Text('cancel'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+              FlatButton(
                 child: Text('add account'),
                 onPressed: () {
                   acctProvider.saveAccount();

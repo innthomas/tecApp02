@@ -30,19 +30,19 @@ class _EditAccountState extends State<EditAccount> {
       nameController.text = "";
       balanceController.text = "";
       new Future.delayed(Duration.zero, () {
-        final productProvider =
+        final acctProvider =
             Provider.of<AccountProvider>(context, listen: false);
-        productProvider.loadValues(Account());
+        acctProvider.loadValues(Account());
       });
     } else {
       //Controller Update
       nameController.text = widget.account.name;
-      balanceController.text = widget.account.balance.toString();
+      balanceController.text = " ";
       //State Update
       new Future.delayed(Duration.zero, () {
-        final productProvider =
+        final acctProvider =
             Provider.of<AccountProvider>(context, listen: false);
-        productProvider.loadValues(widget.account);
+        acctProvider.loadValues(widget.account);
       });
     }
 
@@ -51,7 +51,7 @@ class _EditAccountState extends State<EditAccount> {
 
   @override
   Widget build(BuildContext context) {
-    final productProvider = Provider.of<AccountProvider>(context);
+    final acctProvider = Provider.of<AccountProvider>(context);
 
     return Scaffold(
       backgroundColor: Colors.teal[100],
@@ -64,17 +64,17 @@ class _EditAccountState extends State<EditAccount> {
         padding: const EdgeInsets.all(8.0),
         child: ListView(
           children: <Widget>[
+            Text(acctProvider.name),
+            Text(acctProvider.acctNumber),
             TextField(
-              controller: nameController,
-              decoration: InputDecoration(hintText: 'Account Name'),
-              onChanged: (value) {
-                productProvider.changeName(value);
-              },
-            ),
-            TextField(
+              keyboardType: TextInputType.number,
+              textInputAction: TextInputAction.next,
               controller: balanceController,
-              decoration: InputDecoration(hintText: 'Deposit'),
-              onChanged: (value) => productProvider.changeBalance(value),
+              decoration: InputDecoration(
+                labelText: "amount",
+                hintText: 'amount',
+              ),
+              onChanged: (value) => acctProvider.changeBalance(value),
             ),
             SizedBox(
               height: 20.0,
@@ -82,7 +82,7 @@ class _EditAccountState extends State<EditAccount> {
             RaisedButton(
               child: Text('Save'),
               onPressed: () {
-                productProvider.saveAccount();
+                acctProvider.saveAccount();
                 Navigator.of(context).pop();
               },
             ),
@@ -92,7 +92,7 @@ class _EditAccountState extends State<EditAccount> {
                     textColor: Colors.white,
                     child: Text('Delete'),
                     onPressed: () {
-                      productProvider.removeAccount(widget.account.accountId);
+                      acctProvider.removeAccount(widget.account.accountId);
                       Navigator.of(context).pop();
                     },
                   )

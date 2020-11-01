@@ -7,19 +7,19 @@ class FirestoreService {
 
   Future<void> saveAccount(Account account) {
     return _db
-        .collection('accounts')
+        .collection('myAccounts')
         .document(account.accountId)
         .setData(account.toMap());
   }
 
   Stream<List<Account>> getAccounts() {
-    return _db.collection('accounts').snapshots().map((snapshot) => snapshot
+    return _db.collection('myAccounts').snapshots().map((snapshot) => snapshot
         .documents
         .map((document) => Account.fromFirestore(document.data))
         .toList());
   }
 
   Future<void> removeAccount(String accountId) {
-    return _db.collection('accounts').document(accountId).delete();
+    return _db.collection('myAccounts').document(accountId).delete();
   }
 }
