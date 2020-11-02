@@ -64,7 +64,9 @@ class AccountDashboard extends StatelessWidget {
           trailing: Text(
             person.balance.toString(),
             style: TextStyle(
-              color: (person.balance < 0) ? Colors.red : Colors.green,
+              fontWeight: FontWeight.bold,
+              fontSize: 25.0,
+              color: (person.balance < 0) ? Colors.red[800] : Colors.green[800],
             ),
           ),
         ),

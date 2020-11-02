@@ -26,7 +26,11 @@ class MyListViewBuilder extends StatelessWidget {
           trailing: Text(
             accounts[index].balance.toString(),
             style: TextStyle(
-              color: (accounts[index].balance < 0) ? Colors.red : Colors.green,
+              fontWeight: FontWeight.bold,
+              fontSize: 25.0,
+              color: (accounts[index].balance < 0)
+                  ? Colors.red[800]
+                  : Colors.green[800],
             ),
           ),
           onLongPress: () {
