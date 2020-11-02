@@ -61,7 +61,12 @@ class AccountDashboard extends StatelessWidget {
           leading: Icon(Icons.person),
           title: Text(person.name),
           subtitle: Text(person.acctNumber),
-          trailing: Text('${person.balance} '),
+          trailing: Text(
+            person.balance.toString(),
+            style: TextStyle(
+              color: (person.balance < 0) ? Colors.red : Colors.green,
+            ),
+          ),
         ),
       ),
     );

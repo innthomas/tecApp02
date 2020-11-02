@@ -3,16 +3,16 @@ import 'package:provider/provider.dart';
 import 'package:tecApp02/models/account.dart';
 import '../providers/account_provider.dart';
 
-class EditAccount extends StatefulWidget {
+class DepositScreen extends StatefulWidget {
   final Account account;
 
-  EditAccount([this.account]);
+  DepositScreen([this.account]);
 
   @override
-  _EditAccountState createState() => _EditAccountState();
+  _DepositScreenState createState() => _DepositScreenState();
 }
 
-class _EditAccountState extends State<EditAccount> {
+class _DepositScreenState extends State<DepositScreen> {
   final nameController = TextEditingController();
   final balanceController = TextEditingController();
 
@@ -64,13 +64,7 @@ class _EditAccountState extends State<EditAccount> {
         padding: const EdgeInsets.all(8.0),
         child: ListView(
           children: <Widget>[
-            TextField(
-              controller: nameController,
-              decoration: InputDecoration(hintText: 'Account Name'),
-              onChanged: (value) {
-                productProvider.changeName(value);
-              },
-            ),
+            Text(widget.account.name),
             TextField(
               controller: balanceController,
               decoration: InputDecoration(hintText: 'Deposit'),

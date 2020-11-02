@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tecApp02/models/account.dart';
 import 'package:tecApp02/providers/account_provider.dart';
-import 'package:tecApp02/screens/accounts_dashboard.dart';
 
 Future buildTransactDialog(BuildContext context) {
   final acctProvider = Provider.of<AccountProvider>(context, listen: false);

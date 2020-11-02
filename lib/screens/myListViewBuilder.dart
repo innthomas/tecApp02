@@ -16,9 +16,6 @@ class MyListViewBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TextEditingController balanceController = TextEditingController();
-    // final acctProvider = Provider.of<AccountProvider>(context, listen: false);
-    //acctProvider.loadValues(Account());
     return ListView.builder(
       itemCount: accounts.length,
       itemBuilder: (context, index) {
@@ -26,22 +23,26 @@ class MyListViewBuilder extends StatelessWidget {
           leading: Icon(Icons.person),
           title: Text(accounts[index].name),
           subtitle: Text(accounts[index].acctNumber.toString()),
-          trailing: Text(accounts[index].balance.toString()),
+          trailing: Text(
+            accounts[index].balance.toString(),
+            style: TextStyle(
+              color: (accounts[index].balance < 0) ? Colors.red : Colors.green,
+            ),
+          ),
           onLongPress: () {
             Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => WdrawAccount(accounts[index])));
+                builder: (context) => WithdrawalScreen(accounts[index])));
           },
           onTap: () {
             Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => EditAccount(accounts[index])));
+                builder: (context) => DepositScreen(accounts[index])));
           },
-          // onTap: () =>
-          //     buildShowDialog(context, index, balanceController, acctProvider),
         );
       },
     );
   }
 
+//TODO tranzact dialog not working to de discarded to be discarded
   Future buildShowDialog(
     BuildContext context,
     int index,

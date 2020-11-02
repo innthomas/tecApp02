@@ -3,16 +3,16 @@ import 'package:provider/provider.dart';
 import 'package:tecApp02/models/account.dart';
 import '../providers/account_provider.dart';
 
-class WdrawAccount extends StatefulWidget {
+class WithdrawalScreen extends StatefulWidget {
   final Account account;
 
-  WdrawAccount([this.account]);
+  WithdrawalScreen([this.account]);
 
   @override
-  _WdrawAccountState createState() => _WdrawAccountState();
+  _WithdrawalScreenState createState() => _WithdrawalScreenState();
 }
 
-class _WdrawAccountState extends State<WdrawAccount> {
+class _WithdrawalScreenState extends State<WithdrawalScreen> {
   final nameController = TextEditingController();
   final balanceController = TextEditingController();
 
@@ -65,13 +65,7 @@ class _WdrawAccountState extends State<WdrawAccount> {
         padding: const EdgeInsets.all(8.0),
         child: ListView(
           children: <Widget>[
-            TextField(
-              controller: nameController,
-              decoration: InputDecoration(hintText: 'Account Name'),
-              onChanged: (value) {
-                productProvider.changeName(value);
-              },
-            ),
+            Text(widget.account.name),
             TextField(
               controller: balanceController,
               decoration: InputDecoration(
