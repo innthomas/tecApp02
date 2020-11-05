@@ -27,7 +27,7 @@ class MyListViewBuilder extends StatelessWidget {
             accounts[index].balance.toString(),
             style: TextStyle(
               fontWeight: FontWeight.bold,
-              fontSize: 25.0,
+              fontSize: 20.0,
               color: (accounts[index].balance < 0)
                   ? Colors.red[800]
                   : Colors.green[800],
